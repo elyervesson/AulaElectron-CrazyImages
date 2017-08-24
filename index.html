@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
   <head>
     <meta charset="UTF-8">
     <title>Crazy Images</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.angularjs.org/1.6.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.6/angular-route.min.js"></script>
   </head>
   <body>
     <div id="content">
-      <header>
-        <div class="option">&#x2716;</div>
-        <div class="option">&#x1f5d6;</div>
-        <div class="option">&#x1f5d5;</div>
+      <header ng-controller="headCtrl">
+        <div class="option" ng-click="close()">&#x2716;</div>
+        <div class="option" ng-click="maximize()">&#x1f5d6;</div>
+        <div class="option" ng-click="minimize()">&#x1f5d5;</div>
       </header>
+
+      <div id="mainContent" ng-view></div>
     </div>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <script src="script.js"></script>
   </body>
 </html>
