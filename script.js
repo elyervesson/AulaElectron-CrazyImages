@@ -62,6 +62,8 @@ app.controller('homeCtrl', function($scope, $location, image) {
 app.controller('editCtrl', function($scope, image) {
   $scope.imagePath = image.getImagePath();
 
+  $scope.controlsActive = false;
+
   $scope.effects = {
     'Brightness': {val:100, min:0, max:200, delim: '%'},
     'Contrast': {val:100, min:0, max:200, delim: '%'},
@@ -74,6 +76,7 @@ app.controller('editCtrl', function($scope, image) {
   };
 
   $scope.imageEffect = function(effectName){
-
+    $scope.controlsActive = true;
+    $scope.activeEffect = effectName;
   };
 });
