@@ -5,6 +5,10 @@
   max-width: 100%;
 }
 
+body {
+  font-family: calibri;
+}
+
 header {
   display: flex;
   flex-direction: row-reverse;
@@ -56,9 +60,23 @@ div#imageControls, div#preview {
   justify-content: center;
   align-items: center;
   flex: 1;
+  /* create two big buttons in a row */
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 div#imageEditor {
   display: flex;
   flex-direction: row;
 }
+
+  /* create two big buttons in a row */
+  div.effectType{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
