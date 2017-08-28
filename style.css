@@ -70,8 +70,8 @@ div#imageEditor {
   flex-direction: row;
 }
 
-  /* create two big buttons in a row */
-  div.effectType{
+/* create two big buttons in a row */
+div.effectType{
     width: 50%;
     display: flex;
     justify-content: center;
@@ -79,10 +79,10 @@ div#imageEditor {
     align-self: stretch;
     font-size: 1.5rem;
     cursor: pointer;
+    border: 3px solid #eee;
   }
 
-  /* effect selector */
-
+/* effect selector */
 div#liveEffects {
   float: 1;
   display: flex;
@@ -91,9 +91,7 @@ div#liveEffects {
   text-align: center;
 }
 
-
 /* slider */
-
 .range-slider {
   text-align: center;
   width: 100%;
@@ -130,3 +128,12 @@ div#liveEffects {
 }
 
 /* slider */
+
+.effect {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

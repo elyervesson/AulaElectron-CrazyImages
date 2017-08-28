@@ -64,6 +64,10 @@ app.controller('editCtrl', function($scope, image) {
 
   $scope.controlsActive = false;
 
+  var imageReference = document.getElementById('mainImage');
+
+  var generatedStyles = "";
+
   $scope.effects = {
     'Brightness': {val:100, min:0, max:200, delim: '%'},
     'Contrast': {val:100, min:0, max:200, delim: '%'},
@@ -79,4 +83,12 @@ app.controller('editCtrl', function($scope, image) {
     $scope.controlsActive = true;
     $scope.activeEffect = effectName;
   };
+
+  $scope.setEffect = function() {
+    generatedStyles = "";
+    for(let i in $scope.effects) { // i = Brightness and $scope.effects[i].val
+      generatedStyles += `${i}(${$scope.effects[i].val + $scope.effects[i].delim}) `;
+    }
+    imageReference.style.filter = generatedStyles;
+  }
 });
