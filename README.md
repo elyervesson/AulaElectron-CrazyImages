@@ -7,3 +7,4 @@ Este curso tem um total de 10 aulas
 ## Links
 - Aula 01 - https://youtu.be/qdCFQOWALRw
 - Aula 02 - https://youtu.be/P_Q1mERelzI
+- Aula 03 - https://youtu.be/lt4DT0xwumY
