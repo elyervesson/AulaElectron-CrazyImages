@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 header {
@@ -45,4 +46,19 @@ div#content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+
+/* Edit image css */
+
+div#imageControls, div#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+div#imageEditor {
+  display: flex;
+  flex-direction: row;
 }

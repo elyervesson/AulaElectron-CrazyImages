@@ -2,6 +2,16 @@ var app = angular.module('app', ['ngRoute']);
 
 const {remote} = require('electron');
 
+app.service('image', function() {
+  var imagePath = "";
+  this.setImagePath = function(path) {
+    imagePath = path;
+  };
+  this.getImagePath = function() {
+    return imagePath;
+  };
+});
+
 app.config(function($routeProvider){
   $routeProvider.when('/', {
     templateUrl: './home/home.html',
@@ -29,7 +39,7 @@ app.controller('headCtrl', function($scope) {
   };
 });
 
-app.controller('homeCtrl', function($scope, $location) {
+app.controller('homeCtrl', function($scope, $location, image) {
 	$scope.pickFile = function() {
 		var {dialog} = remote;
 		dialog.showOpenDialog({
@@ -41,10 +51,14 @@ app.controller('homeCtrl', function($scope, $location) {
 		}, function(file) {
 			if(!!file) {
 				var path = file[0];
-
+        image.setImagePath(path);
 				$location.path('/edit');
 				$scope.$apply();
 			}
 		});
   };
+});
+
+app.controller('editCtrl', function($scope, image) {
+  $scope.imagePath = image.getImagePath();
 });
