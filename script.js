@@ -59,7 +59,7 @@ app.controller('homeCtrl', function($scope, $location, image) {
   };
 });
 
-app.controller('editCtrl', function($scope, image) {
+app.controller('editCtrl', function($scope, $location, image) {
   $scope.imagePath = image.getImagePath();
 
   $scope.controlsActive = false;
@@ -94,5 +94,13 @@ app.controller('editCtrl', function($scope, image) {
 
   $scope.hideThis = function() {
     $scope.controlsActive = false;
+  };
+
+  $scope.change = function() {
+    $location.path('/');
+  };
+
+  $scope.save = function() {
+    //the magic goes
   };
 });

@@ -1,6 +1,13 @@
 <div id="imageEditor">
   <div id="preview">
-    <img ng-src="{{imagePath}}" id="mainImage"></img>
+    <div id="imagePreview">
+      <img ng-src="{{imagePath}}" id="mainImage"></img>
+    </div>
+
+    <div id="usefulButtons">
+      <div ng-click="change()">Change</div>
+      <div ng-click="save()">Save</div>
+    </div>
   </div>
 
   <div id="imageControls" ng-show="!controlsActive">
