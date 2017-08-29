@@ -90,5 +90,9 @@ app.controller('editCtrl', function($scope, image) {
       generatedStyles += `${i}(${$scope.effects[i].val + $scope.effects[i].delim}) `;
     }
     imageReference.style.filter = generatedStyles;
-  }
+  };
+
+  $scope.hideThis = function() {
+    $scope.controlsActive = false;
+  };
 });
