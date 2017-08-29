@@ -4,11 +4,19 @@ const {remote} = require('electron');
 
 app.service('image', function() {
   var imagePath = "";
+  var dimesions = [];
   this.setImagePath = function(path) {
     imagePath = path;
   };
   this.getImagePath = function() {
     return imagePath;
+  };
+
+  this.setImageDimensions = function(imgDimesions) {
+    dimesions = imgDimesions;
+  };
+  this.getImageDimensions = function() {
+    return dimesions;
   };
 });
 
@@ -52,6 +60,10 @@ app.controller('homeCtrl', function($scope, $location, image) {
 			if(!!file) {
 				var path = file[0];
         image.setImagePath(path);
+        var sizeof = require('image-size');
+
+        var dimesions = sizeof(path); // dimesions.width and dimesions.height
+        image.setImageDimensions(dimesions);
 				$location.path('/edit');
 				$scope.$apply();
 			}
@@ -102,5 +114,22 @@ app.controller('editCtrl', function($scope, $location, image) {
 
   $scope.save = function() {
     //the magic goes
+    const {BrowserWindow} = remote;
+		var dimesions = image.getImageDimensions();
+		let src = image.getImagePath();
+
+    let styles = imageReference.style.filter;
+
+		let win = new BrowserWindow({
+			frame: false,
+			show: true,
+			width: dimesions.width,
+			height: dimesions.height,
+      // Permite carregar os recursos locais para poder visualizar a imagem editada
+			"webPreferences": {
+				"webSecurity": false
+			}
+		});
+    win.loadURL(`data:text/html,<style>*{margin:0;padding:0;}</style><img src="${src}" style="filter: ${styles}">`);
   };
 });
