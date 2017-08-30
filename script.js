@@ -5,6 +5,8 @@ const {remote} = require('electron');
 app.service('image', function() {
   var imagePath = "";
   var dimesions = [];
+  var style = "";
+
   this.setImagePath = function(path) {
     imagePath = path;
   };
@@ -17,6 +19,13 @@ app.service('image', function() {
   };
   this.getImageDimensions = function() {
     return dimesions;
+  };
+
+  this.setImageStyle = function(imgStyle) {
+    style = imgStyle;
+  };
+  this.getImageStyle = function() {
+    return style;
   };
 });
 
@@ -76,6 +85,8 @@ app.controller('editCtrl', function($scope, $location, image) {
 
   $scope.controlsActive = false;
 
+  $scope.styles = "";
+
   var imageReference = document.getElementById('mainImage');
 
   var generatedStyles = "";
@@ -113,23 +124,40 @@ app.controller('editCtrl', function($scope, $location, image) {
   };
 
   $scope.save = function() {
-    //the magic goes
-    const {BrowserWindow} = remote;
-		var dimesions = image.getImageDimensions();
-		let src = image.getImagePath();
+  		// the magic goes
+  		const {BrowserWindow} = remote;
+  		var dimesions = image.getImageDimensions();
+  		let src = image.getImagePath();
 
-    let styles = imageReference.style.filter;
+  		let styles = imageReference.style.filter;
 
-		let win = new BrowserWindow({
-			frame: false,
-			show: true,
-			width: dimesions.width,
-			height: dimesions.height,
-      // Permite carregar os recursos locais para poder visualizar a imagem editada
-			"webPreferences": {
-				"webSecurity": false
-			}
-		});
-    win.loadURL(`data:text/html,<style>*{margin:0;padding:0;}</style><img src="${src}" style="filter: ${styles}">`);
-  };
+  		let win = new BrowserWindow({
+  			frame: false,
+  			show: true,
+  			width: dimesions.width,
+  			height: dimesions.height,
+  			webPreferences: {
+  				webSecurity: false
+  			}
+  		});
+      win.webContents.openDevTools();
+      win.loadURL('file://' + __dirname + '/editImage/image.html');
+
+  		// win.loadURL(`data:text/html,
+  		// 	<style>*{margin:0;padding:0;}</style><img src="${src}" style="filter: ${styles}">
+      //
+  		// 	<script>
+  		// 		var screenshot = require('electron-screenshot');
+  		// 		screenshot({
+  		// 			filename: 'userFile.png',
+  		// 			delay: 1000
+  		// 		});
+  		// 	</script>
+      //
+  		// 	`);
+  	};
+});
+
+app.controller('imageCtrl', function($scope, image) {
+  $scope.src = image.getImagePath();
 });

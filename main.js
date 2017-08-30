@@ -13,7 +13,7 @@ let boot = () => {
   win.loadURL('file://' + __dirname + '/index.html');
 
   // Abre automaticamente o developer tools quando a janela for criada
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 };
 
 app.on('ready', boot);

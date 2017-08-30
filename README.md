@@ -28,5 +28,6 @@ Este curso tem um total de 10 aulas
 - Aula 09 - https://youtu.be/EAhgS4Wsar8
   (Adição dos botões de salvar e selecionar nova image, adição da logica do
     segundo botão e seus css)
--Aula 10 - https://youtu.be/IG_sqt9oRr0
+- Aula 10 - https://youtu.be/IG_sqt9oRr0
   ()
+- Aula 11 - https://youtu.be/OlxEsARP7_g
